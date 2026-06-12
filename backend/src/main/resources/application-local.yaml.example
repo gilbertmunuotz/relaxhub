@@ -1,0 +1,8 @@
+# Copy to application-local.yaml and customize for your machine.
+# This file is gitignored.
+
+# spring:
+#   datasource:
+#     url: jdbc:postgresql://localhost:5432/relaxhub
+#     username: relaxhub
+#     password: relaxhub
