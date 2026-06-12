@@ -16,9 +16,12 @@ gen/
 out/
 release/
 
-# Gradle files
+# Gradle (frontend)
 .gradle/
 build/
+
+# Maven (backend)
+target/
 
 # Local configuration (SDK path — machine-specific)
 local.properties
@@ -26,16 +29,12 @@ local.properties
 # Android Studio / IntelliJ IDEA
 *.iml
 .idea/
-.idea/caches/
-.idea/libraries/
-.idea/modules.xml
-.idea/workspace.xml
-.idea/navEditor.xml
-.idea/assetWizardSettings.xml
+.vscode/
 
 # Keystore files — never commit signing keys
 *.jks
 *.keystore
+signing.properties
 
 # External native build folder generated in Android Studio 2.2+
 .externalNativeBuild/
@@ -57,5 +56,9 @@ captures/
 # Kotlin
 .kotlin/
 
-# Signing config (if you keep secrets in a separate file)
-signing.properties
+# Environment and secrets
+.env
+.env.*
+!.env.example
+application-local.yaml
+application-local.yml

@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Frontend"
+rootProject.name = "Relaxhub"
 include(":app")
