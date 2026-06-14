@@ -1,0 +1,12 @@
+# Optional — only if you have Docker installed.
+# Without Docker, use a local PostgreSQL install on macOS instead (see README).
+
+services:
+  postgres:
+    image: postgres:16
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: relaxhub
+      POSTGRES_USER: relaxhub
+      POSTGRES_PASSWORD: relaxhub
