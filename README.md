@@ -54,6 +54,8 @@ cd backend
 ./mvnw spring-boot:run
 ```
 
+**IntelliJ:** Use run configuration **Relaxhub Backend** (included in `backend/.run/`), or set **Working directory** to the `backend` folder where `.env` lives. If you open the whole monorepo in IntelliJ, set working directory to `.../relaxhub/backend`.
+
 The API starts on `http://localhost:8080`.
 
 Verify:

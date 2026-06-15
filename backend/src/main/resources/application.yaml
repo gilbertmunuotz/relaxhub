@@ -1,10 +1,14 @@
 spring:
   application:
     name: relaxhub
+  config:
+    import:
+      - optional:file:.env[.properties]
+      - optional:file:backend/.env[.properties]
   datasource:
     url: ${DB_URL}
     username: ${DB_USERNAME}
-    password: ${DB_PASSWORD:} 
+    password: ${DB_PASSWORD:}
   jpa:
     hibernate:
       ddl-auto: update
