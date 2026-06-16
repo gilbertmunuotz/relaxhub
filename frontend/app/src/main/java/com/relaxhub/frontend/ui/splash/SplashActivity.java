@@ -9,7 +9,9 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.relaxhub.frontend.R;
+import com.relaxhub.frontend.data.local.SessionManager;
 import com.relaxhub.frontend.ui.auth.LoginActivity;
+import com.relaxhub.frontend.ui.dashboard.DashboardActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -21,9 +23,16 @@ public class SplashActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_splash);
 
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-            finish();
-        }, SPLASH_DELAY_MS);
+        new Handler(Looper.getMainLooper()).postDelayed(this::routeNextScreen, SPLASH_DELAY_MS);
+    }
+
+    private void routeNextScreen() {
+        SessionManager sessionManager = SessionManager.getInstance(this);
+        Class<?> destination = sessionManager.isLoggedIn()
+                ? DashboardActivity.class
+                : LoginActivity.class;
+
+        startActivity(new Intent(this, destination));
+        finish();
     }
 }
