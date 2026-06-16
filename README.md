@@ -65,6 +65,22 @@ curl http://localhost:8080/api/health
 curl http://localhost:8080/api/health/db
 ```
 
+### Test auth (Step 2)
+
+```bash
+# Register
+curl -X POST http://localhost:8080/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"fullName":"Test User","email":"test@example.com","password":"secret12","phone":""}'
+
+# Login
+curl -X POST http://localhost:8080/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com","password":"secret12"}'
+```
+
+Ensure `JWT_SECRET` is set in `backend/.env` (at least 32 characters).
+
 ### Optional: Docker PostgreSQL
 
 If you prefer Docker and have it installed:

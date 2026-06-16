@@ -10,3 +10,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect
+
+relaxhub:
+  jwt:
+    secret: test-secret-key-for-unit-tests-only-min-32-chars-long
+    expiration-ms: 86400000

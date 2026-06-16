@@ -9,26 +9,49 @@ public class SessionCacheEntry {
     @PrimaryKey
     private int id;
 
-    private String value;
+    private long userId;
+    private String fullName;
+    private String email;
+    private String token;
+    private long loggedInAt;
 
-    public SessionCacheEntry(int id, String value) {
+    public SessionCacheEntry(
+            int id,
+            long userId,
+            String fullName,
+            String email,
+            String token,
+            long loggedInAt
+    ) {
         this.id = id;
-        this.value = value;
+        this.userId = userId;
+        this.fullName = fullName;
+        this.email = email;
+        this.token = token;
+        this.loggedInAt = loggedInAt;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public long getUserId() {
+        return userId;
     }
 
-    public String getValue() {
-        return value;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public String getEmail() {
+        return email;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public long getLoggedInAt() {
+        return loggedInAt;
     }
 }
