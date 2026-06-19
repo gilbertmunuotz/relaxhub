@@ -73,5 +73,4 @@
     <string name="profile_loaded">Profile synced with server</string>
     <string name="profile_failed">Could not load profile</string>
     <string name="location_permission_required">Location permission is required to show your position on the map.</string>
-    <string name="google_maps_key" translatable="false">YOUR_MAPS_API_KEY</string>
 </resources>
