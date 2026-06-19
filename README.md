@@ -81,6 +81,13 @@ curl -X POST http://localhost:8080/api/auth/login \
 
 Ensure `JWT_SECRET` is set in `backend/.env` (at least 32 characters).
 
+### Step 3 features
+
+- **Reset password:** Login → Forgot password? → enter email + new password
+- **Logout:** Dashboard → Settings tab → Log out
+- **Google Maps:** Dashboard → Maps tab (set your API key in `frontend/app/src/main/res/values/strings.xml` → `google_maps_key`)
+- **JWT protected API:** Account tab calls `GET /api/auth/me` with Bearer token
+
 ### Optional: Docker PostgreSQL
 
 If you prefer Docker and have it installed:

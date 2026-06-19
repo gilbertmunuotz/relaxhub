@@ -61,4 +61,17 @@
     <string name="dashboard_maps_message">Google Maps integration coming in the next step.</string>
     <string name="dashboard_account_message">Account details will appear here.</string>
     <string name="dashboard_settings_message">App settings will appear here.</string>
+
+    <string name="action_forgot_password">Forgot password?</string>
+    <string name="action_reset_password">Reset password</string>
+    <string name="action_logout">Log out</string>
+    <string name="hint_new_password">New password</string>
+    <string name="reset_password_instructions">Enter your account email and a new password.</string>
+    <string name="reset_password_success">Password updated. You can log in now.</string>
+    <string name="reset_password_failed">Password reset failed. Check your email.</string>
+    <string name="profile_loading">Loading profile\u2026</string>
+    <string name="profile_loaded">Profile synced with server</string>
+    <string name="profile_failed">Could not load profile</string>
+    <string name="location_permission_required">Location permission is required to show your position on the map.</string>
+    <string name="google_maps_key" translatable="false">YOUR_MAPS_API_KEY</string>
 </resources>

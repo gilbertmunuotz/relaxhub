@@ -1,5 +1,7 @@
 package com.relaxhub.frontend.data.remote;
 
+import android.content.Context;
+
 import com.relaxhub.frontend.util.ApiConfig;
 
 import okhttp3.OkHttpClient;
@@ -14,22 +16,31 @@ public final class ApiClient {
     private ApiClient() {
     }
 
+    public static void init(Context context) {
+        if (api != null) {
+            return;
+        }
+
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new AuthInterceptor(context))
+                .addInterceptor(logging)
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiConfig.BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        api = retrofit.create(RelaxhubApi.class);
+    }
+
     public static RelaxhubApi getApi() {
         if (api == null) {
-            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-            OkHttpClient client = new OkHttpClient.Builder()
-                    .addInterceptor(logging)
-                    .build();
-
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(ApiConfig.BASE_URL)
-                    .client(client)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-            api = retrofit.create(RelaxhubApi.class);
+            throw new IllegalStateException("ApiClient.init(context) must be called first");
         }
         return api;
     }
