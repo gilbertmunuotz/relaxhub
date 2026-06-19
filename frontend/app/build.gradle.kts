@@ -2,6 +2,23 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
+fun loadFrontendEnv(): Map<String, String> {
+    val envFile = rootProject.file(".env")
+    if (!envFile.exists()) {
+        return emptyMap()
+    }
+    return envFile.readLines()
+        .map { it.trim() }
+        .filter { it.isNotEmpty() && !it.startsWith("#") && "=" in it }
+        .associate { line ->
+            val (key, value) = line.split("=", limit = 2)
+            key.trim() to value.trim()
+        }
+}
+
+val frontendEnv = loadFrontendEnv()
+val mapsApiKey = frontendEnv["GOOGLE_MAPS_API_KEY"] ?: ""
+
 android {
     namespace = "com.relaxhub.frontend"
     compileSdk {
@@ -18,6 +35,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders["GOOGLE_MAPS_API_KEY"] =
+            mapsApiKey.ifEmpty { "MISSING_GOOGLE_MAPS_API_KEY" }
     }
 
     buildTypes {

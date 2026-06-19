@@ -85,7 +85,19 @@ Ensure `JWT_SECRET` is set in `backend/.env` (at least 32 characters).
 
 - **Reset password:** Login → Forgot password? → enter email + new password
 - **Logout:** Dashboard → Settings tab → Log out
-- **Google Maps:** Dashboard → Maps tab (set your API key in `frontend/app/src/main/res/values/strings.xml` → `google_maps_key`)
+- **Google Maps:** Dashboard → Maps tab — set `GOOGLE_MAPS_API_KEY` in `frontend/.env` (see below)
+
+### Frontend secrets (`frontend/.env`)
+
+```bash
+cd frontend
+cp .env.example .env
+# Edit .env and set GOOGLE_MAPS_API_KEY=...
+```
+
+Gradle reads `frontend/.env` at build time and injects the key into the app — it is **not** stored in committed `strings.xml`.
+
+**Important:** A Maps key inside an APK can still be extracted. Always restrict it in [Google Cloud Console](https://console.cloud.google.com/) to your app package (`com.relaxhub.frontend`) and debug/release SHA-1 fingerprint.
 - **JWT protected API:** Account tab calls `GET /api/auth/me` with Bearer token
 
 ### Optional: Docker PostgreSQL
