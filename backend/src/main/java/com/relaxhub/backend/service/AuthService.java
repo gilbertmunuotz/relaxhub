@@ -7,6 +7,8 @@ import com.relaxhub.backend.dto.UserResponse;
 import com.relaxhub.backend.entity.User;
 import com.relaxhub.backend.exception.EmailAlreadyExistsException;
 import com.relaxhub.backend.exception.InvalidCredentialsException;
+import com.relaxhub.backend.exception.UserNotFoundException;
+import com.relaxhub.backend.dto.ResetPasswordRequest;
 import com.relaxhub.backend.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -54,6 +56,20 @@ public class AuthService {
         }
 
         return buildAuthResponse(user);
+    }
+
+
+    public void resetPassword(ResetPasswordRequest request) {
+        User user = userRepository.findByEmail(request.getEmail().trim().toLowerCase())
+                .orElseThrow(UserNotFoundException::new);
+        user.setPasswordHash(passwordEncoder.encode(request.getNewPassword()));
+        userRepository.save(user);
+    }
+
+    public UserResponse getCurrentUser(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(UserNotFoundException::new);
+        return new UserResponse(user.getId(), user.getFullName(), user.getEmail(), user.getPhone());
     }
 
     private AuthResponse buildAuthResponse(User user) {

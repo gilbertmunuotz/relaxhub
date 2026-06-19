@@ -6,6 +6,8 @@ import com.relaxhub.frontend.data.model.DbHealthResponse;
 import com.relaxhub.frontend.data.model.HealthResponse;
 import com.relaxhub.frontend.data.model.LoginRequest;
 import com.relaxhub.frontend.data.model.RegisterRequest;
+import com.relaxhub.frontend.data.model.ResetPasswordRequest;
+import com.relaxhub.frontend.data.model.UserResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -25,4 +27,10 @@ public interface RelaxhubApi {
 
     @POST("api/auth/register")
     Call<ApiResponse<AuthResponse>> register(@Body RegisterRequest request);
+
+    @POST("api/auth/reset-password")
+    Call<ApiResponse<Void>> resetPassword(@Body ResetPasswordRequest request);
+
+    @GET("api/auth/me")
+    Call<ApiResponse<UserResponse>> getProfile();
 }

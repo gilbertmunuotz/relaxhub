@@ -49,8 +49,11 @@ public class LoginActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.passwordInput);
         loginButton = findViewById(R.id.loginButton);
         MaterialButton signUpLink = findViewById(R.id.signUpLink);
+        MaterialButton forgotPasswordLink = findViewById(R.id.forgotPasswordLink);
 
         loginButton.setOnClickListener(v -> attemptLogin());
+        forgotPasswordLink.setOnClickListener(v ->
+                startActivity(new Intent(this, Reset_password_Activity.class)));
         signUpLink.setOnClickListener(v ->
                 startActivity(new Intent(this, Sign_up_Activity.class)));
 

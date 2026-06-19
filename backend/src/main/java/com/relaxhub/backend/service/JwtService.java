@@ -1,6 +1,7 @@
 package com.relaxhub.backend.service;
 
 import com.relaxhub.backend.config.JwtProperties;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,35 @@ public class JwtService {
 
     public long getExpirationMs() {
         return jwtProperties.getExpirationMs();
+    }
+
+    public boolean isTokenValid(String token) {
+        try {
+            parseClaims(token);
+            return true;
+        } catch (Exception exception) {
+            return false;
+        }
+    }
+
+    public String extractEmail(String token) {
+        return parseClaims(token).getSubject();
+    }
+
+    public Long extractUserId(String token) {
+        Claims claims = parseClaims(token);
+        Object userId = claims.get("userId");
+        if (userId instanceof Number number) {
+            return number.longValue();
+        }
+        return null;
+    }
+
+    private Claims parseClaims(String token) {
+        return Jwts.parser()
+                .verifyWith(secretKey)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
     }
 }
