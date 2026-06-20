@@ -73,4 +73,36 @@
     <string name="profile_loaded">Profile synced with server</string>
     <string name="profile_failed">Could not load profile</string>
     <string name="location_permission_required">Location permission is required to show your position on the map.</string>
+
+    <string name="settings_menu_title">More options</string>
+    <string name="open_feedback">User feedback</string>
+    <string name="open_complaints">Submit a complaint</string>
+    <string name="open_receipt">Visit receipts</string>
+    <string name="open_help">Help &amp; FAQ</string>
+    <string name="open_contact">Contact us</string>
+    <string name="open_privacy">Privacy policy</string>
+    <string name="hint_rating">Your rating</string>
+    <string name="hint_feedback_message">Tell us about your experience</string>
+    <string name="hint_subject">Subject</string>
+    <string name="hint_description">Description</string>
+    <string name="hint_place_name">Place name</string>
+    <string name="hint_amount">Amount (optional)</string>
+    <string name="hint_notes">Notes (optional)</string>
+    <string name="action_submit">Submit</string>
+    <string name="action_save_receipt">Save visit</string>
+    <string name="action_pick_date">Pick date</string>
+    <string name="action_pick_time">Pick time</string>
+    <string name="action_call">Call support</string>
+    <string name="action_sms">Send SMS</string>
+    <string name="action_email">Send email</string>
+    <string name="submit_success">Submitted successfully</string>
+    <string name="submit_failed">Submission failed</string>
+    <string name="receipt_history_title">Your visits</string>
+    <string name="receipt_history_empty">No visits saved yet</string>
+    <string name="receipt_item_format">%1$s — %2$s at %3$s</string>
+    <string name="support_phone">+255700000000</string>
+    <string name="support_email">support@relaxhub.app</string>
+    <string name="contact_intro">Reach Relaxhub support using your phone.</string>
+    <string name="help_content">Frequently asked questions\n\n1. How do I find nearby places?\nOpen the Maps tab from the dashboard.\n\n2. How do I save a visit?\nGo to Settings → Visit receipts and fill in the form.\n\n3. How do I report a problem?\nUse Submit a complaint from Settings.\n\n4. How do I log out?\nOpen Settings and tap Log out.</string>
+    <string name="privacy_content">Relaxhub Privacy Policy\n\nWe collect account information you provide during registration and feedback you submit in the app. Location data is used only to show nearby places on the map.\n\nYour data is stored securely in our database and is not sold to third parties. Contact support if you want your account removed.</string>
 </resources>

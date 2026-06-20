@@ -87,6 +87,14 @@ Ensure `JWT_SECRET` is set in `backend/.env` (at least 32 characters).
 - **Logout:** Dashboard → Settings tab → Log out
 - **Google Maps:** Dashboard → Maps tab — set `GOOGLE_MAPS_API_KEY` in `frontend/.env` (see below)
 
+### Step 4 features
+
+- **Feedback:** Settings → User feedback (rating + message)
+- **Complaints:** Settings → Submit a complaint
+- **Receipts:** Settings → Visit receipts (date/time pickers + history)
+- **Help / Privacy:** Static content screens
+- **Contact:** Call, SMS, and email intents
+
 ### Frontend secrets (`frontend/.env`)
 
 ```bash
