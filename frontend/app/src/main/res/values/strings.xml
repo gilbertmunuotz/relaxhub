@@ -58,7 +58,7 @@
     <string name="error_required_fields">Please fill in all required fields</string>
     <string name="dashboard_welcome">Welcome, %1$s</string>
     <string name="dashboard_home_message">Find nearby restaurants and relaxation spots from your dashboard.</string>
-    <string name="dashboard_maps_message">Google Maps integration coming in the next step.</string>
+    <string name="dashboard_maps_message">Browse nearby restaurants and relaxation spots on the map.</string>
     <string name="dashboard_account_message">Account details will appear here.</string>
     <string name="dashboard_settings_message">App settings will appear here.</string>
 
@@ -105,4 +105,20 @@
     <string name="contact_intro">Reach Relaxhub support using your phone.</string>
     <string name="help_content">Frequently asked questions\n\n1. How do I find nearby places?\nOpen the Maps tab from the dashboard.\n\n2. How do I save a visit?\nGo to Settings → Visit receipts and fill in the form.\n\n3. How do I report a problem?\nUse Submit a complaint from Settings.\n\n4. How do I log out?\nOpen Settings and tap Log out.</string>
     <string name="privacy_content">Relaxhub Privacy Policy\n\nWe collect account information you provide during registration and feedback you submit in the app. Location data is used only to show nearby places on the map.\n\nYour data is stored securely in our database and is not sold to third parties. Contact support if you want your account removed.</string>
+
+    <string name="home_subtitle">Discover places to eat and unwind around Dar es Salaam.</string>
+    <string name="home_quick_actions">Quick actions</string>
+    <string name="open_full_map">Open nearby places map</string>
+    <string name="filter_all_spots">All</string>
+    <string name="filter_restaurants">Restaurants</string>
+    <string name="filter_relaxation">Relaxation</string>
+    <string name="spots_load_failed">Could not load nearby spots</string>
+    <string name="spots_empty">No spots found nearby</string>
+    <string name="notification_channel_name">Relaxhub updates</string>
+    <string name="notification_channel_description">Welcome messages and visit reminders</string>
+    <string name="notification_welcome_title">Welcome to Relaxhub</string>
+    <string name="notification_welcome_body">Hi %1$s — explore nearby restaurants and relaxation spots.</string>
+    <string name="notification_welcome_body_generic">Explore nearby restaurants and relaxation spots.</string>
+    <string name="notification_receipt_title">Visit saved</string>
+    <string name="notification_receipt_body">Your visit to %1$s was saved.</string>
 </resources>

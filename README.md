@@ -95,6 +95,22 @@ Ensure `JWT_SECRET` is set in `backend/.env` (at least 32 characters).
 - **Help / Privacy:** Static content screens
 - **Contact:** Call, SMS, and email intents
 
+### Step 5 features
+
+- **Nearby spots API:** `GET /api/spots`, `GET /api/spots/nearby?lat=&lng=&radiusKm=&type=`, `GET /api/spots/{id}` (JWT required)
+- **Seed data:** 10 sample restaurants and relaxation spots around Dar es Salaam (loaded on first backend start)
+- **Maps:** Dashboard → Maps tab shows markers from the API; filter by All / Restaurants / Relaxation
+- **MainActivity:** Full-screen nearby places map (Home → Open nearby places map, or Maps tab → Open full map)
+- **Home screen:** Welcome message, quick actions, and recent visits from the receipts API
+- **Notifications:** Welcome notification on first dashboard visit; visit-saved notification after saving a receipt (Android 13+ asks for permission)
+
+Test spots API (replace `TOKEN` with a login JWT):
+
+```bash
+curl http://localhost:8080/api/spots/nearby?lat=-6.7924&lng=39.2083&radiusKm=20 \
+  -H "Authorization: Bearer TOKEN"
+```
+
 ### Frontend secrets (`frontend/.env`)
 
 ```bash

@@ -11,6 +11,7 @@ import com.relaxhub.frontend.data.model.ApiResponse;
 import com.relaxhub.frontend.data.model.CreateReceiptRequest;
 import com.relaxhub.frontend.data.model.ReceiptResponse;
 import com.relaxhub.frontend.ui.FormActivity;
+import com.relaxhub.frontend.util.NotificationHelper;
 import com.relaxhub.frontend.util.DateTimeUtils;
 
 import java.time.LocalDate;
@@ -113,7 +114,25 @@ public class ReceiptActivity extends FormActivity {
                     notes.isEmpty() ? null : notes
             );
 
-            handleSubmit(api.createReceipt(request), this::loadReceipts);
+            api.createReceipt(request).enqueue(new Callback<ApiResponse<ReceiptResponse>>() {
+                @Override
+                public void onResponse(
+                        Call<ApiResponse<ReceiptResponse>> call,
+                        Response<ApiResponse<ReceiptResponse>> response
+                ) {
+                    if (response.isSuccessful() && response.body() != null && response.body().isSuccess()) {
+                        NotificationHelper.showReceiptSaved(ReceiptActivity.this, placeName);
+                        loadReceipts();
+                        return;
+                    }
+                    android.widget.Toast.makeText(ReceiptActivity.this, R.string.submit_failed, android.widget.Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<ApiResponse<ReceiptResponse>> call, Throwable t) {
+                    android.widget.Toast.makeText(ReceiptActivity.this, R.string.submit_failed, android.widget.Toast.LENGTH_SHORT).show();
+                }
+            });
         });
 
         loadReceipts();

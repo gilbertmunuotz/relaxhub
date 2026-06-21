@@ -11,6 +11,7 @@ import com.relaxhub.frontend.data.model.LoginRequest;
 import com.relaxhub.frontend.data.model.RegisterRequest;
 import com.relaxhub.frontend.data.model.ResetPasswordRequest;
 import com.relaxhub.frontend.data.model.ReceiptResponse;
+import com.relaxhub.frontend.data.model.SpotResponse;
 import com.relaxhub.frontend.data.model.UserResponse;
 
 import java.util.List;
@@ -19,6 +20,8 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface RelaxhubApi {
 
@@ -51,4 +54,18 @@ public interface RelaxhubApi {
 
     @GET("api/receipts")
     Call<ApiResponse<List<ReceiptResponse>>> getReceipts();
+
+    @GET("api/spots")
+    Call<ApiResponse<List<SpotResponse>>> getSpots(@Query("type") String type);
+
+    @GET("api/spots/nearby")
+    Call<ApiResponse<List<SpotResponse>>> getNearbySpots(
+            @Query("lat") double lat,
+            @Query("lng") double lng,
+            @Query("radiusKm") double radiusKm,
+            @Query("type") String type
+    );
+
+    @GET("api/spots/{id}")
+    Call<ApiResponse<SpotResponse>> getSpot(@Path("id") long id);
 }
