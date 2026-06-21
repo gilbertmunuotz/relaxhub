@@ -14,6 +14,12 @@ import com.google.android.material.button.MaterialButton;
 import com.relaxhub.frontend.R;
 import com.relaxhub.frontend.data.local.SessionManager;
 import com.relaxhub.frontend.ui.auth.LoginActivity;
+import com.relaxhub.frontend.ui.complaints.ComplainsActivity;
+import com.relaxhub.frontend.ui.contact.ContactActivity;
+import com.relaxhub.frontend.ui.feedback.UserFeedbackActivity;
+import com.relaxhub.frontend.ui.help.HelpActivity;
+import com.relaxhub.frontend.ui.privacy.PrivacyPolicyActivity;
+import com.relaxhub.frontend.ui.receipt.ReceiptActivity;
 
 public class SettingsFragment extends Fragment {
 
@@ -30,6 +36,20 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        view.findViewById(R.id.openFeedbackButton).setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), UserFeedbackActivity.class)));
+        view.findViewById(R.id.openComplaintsButton).setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), ComplainsActivity.class)));
+        view.findViewById(R.id.openReceiptButton).setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), ReceiptActivity.class)));
+        view.findViewById(R.id.openHelpButton).setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), HelpActivity.class)));
+        view.findViewById(R.id.openContactButton).setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), ContactActivity.class)));
+        view.findViewById(R.id.openPrivacyButton).setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), PrivacyPolicyActivity.class)));
+
         MaterialButton logoutButton = view.findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(v -> {
             SessionManager.getInstance(requireContext()).clearSession();
