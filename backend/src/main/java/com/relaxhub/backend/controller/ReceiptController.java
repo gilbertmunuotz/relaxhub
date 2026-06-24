@@ -3,7 +3,7 @@ package com.relaxhub.backend.controller;
 import com.relaxhub.backend.dto.ApiResponse;
 import com.relaxhub.backend.dto.CreateReceiptRequest;
 import com.relaxhub.backend.dto.ReceiptResponse;
-import com.relaxhub.backend.security.JwtAuthenticationToken;
+import com.relaxhub.backend.security.AuthenticatedUser;
 import com.relaxhub.backend.service.ReceiptService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -29,19 +29,19 @@ public class ReceiptController {
 
     @PostMapping
     public ResponseEntity<ApiResponse<ReceiptResponse>> create(
-            @AuthenticationPrincipal JwtAuthenticationToken auth,
+            @AuthenticationPrincipal AuthenticatedUser user,
             @Valid @RequestBody CreateReceiptRequest request
     ) {
-        ReceiptResponse response = receiptService.create(auth.getUserId(), request);
+        ReceiptResponse response = receiptService.create(user.userId(), request);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ApiResponse.success("Receipt saved", response));
     }
 
     @GetMapping
     public ResponseEntity<ApiResponse<List<ReceiptResponse>>> list(
-            @AuthenticationPrincipal JwtAuthenticationToken auth
+            @AuthenticationPrincipal AuthenticatedUser user
     ) {
-        List<ReceiptResponse> items = receiptService.listForUser(auth.getUserId());
+        List<ReceiptResponse> items = receiptService.listForUser(user.userId());
         return ResponseEntity.ok(ApiResponse.success("Receipts loaded", items));
     }
 }

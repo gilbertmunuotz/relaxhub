@@ -7,7 +7,7 @@ import com.relaxhub.backend.dto.CreateFeedbackRequest;
 import com.relaxhub.backend.dto.CreateReceiptRequest;
 import com.relaxhub.backend.dto.FeedbackResponse;
 import com.relaxhub.backend.dto.ReceiptResponse;
-import com.relaxhub.backend.security.JwtAuthenticationToken;
+import com.relaxhub.backend.security.AuthenticatedUser;
 import com.relaxhub.backend.service.ComplaintService;
 import com.relaxhub.backend.service.FeedbackService;
 import com.relaxhub.backend.service.ReceiptService;
@@ -35,19 +35,19 @@ public class FeedbackController {
 
     @PostMapping
     public ResponseEntity<ApiResponse<FeedbackResponse>> create(
-            @AuthenticationPrincipal JwtAuthenticationToken auth,
+            @AuthenticationPrincipal AuthenticatedUser user,
             @Valid @RequestBody CreateFeedbackRequest request
     ) {
-        FeedbackResponse response = feedbackService.create(auth.getUserId(), request);
+        FeedbackResponse response = feedbackService.create(user.userId(), request);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ApiResponse.success("Feedback submitted", response));
     }
 
     @GetMapping
     public ResponseEntity<ApiResponse<List<FeedbackResponse>>> list(
-            @AuthenticationPrincipal JwtAuthenticationToken auth
+            @AuthenticationPrincipal AuthenticatedUser user
     ) {
-        List<FeedbackResponse> items = feedbackService.listForUser(auth.getUserId());
+        List<FeedbackResponse> items = feedbackService.listForUser(user.userId());
         return ResponseEntity.ok(ApiResponse.success("Feedback loaded", items));
     }
 }

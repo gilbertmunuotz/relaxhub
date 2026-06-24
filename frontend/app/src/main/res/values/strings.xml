@@ -108,6 +108,14 @@
 
     <string name="home_subtitle">Discover places to eat and unwind around Dar es Salaam.</string>
     <string name="home_quick_actions">Quick actions</string>
+    <string name="home_greeting_morning">Good morning, %1$s</string>
+    <string name="home_greeting_afternoon">Good afternoon, %1$s</string>
+    <string name="home_greeting_evening">Good evening, %1$s</string>
+    <string name="home_greeting_fallback">Welcome back</string>
+    <string name="home_action_map_title">Nearby places</string>
+    <string name="home_action_map_subtitle">Restaurants &amp; relaxation</string>
+    <string name="home_action_receipt_title">Visit receipts</string>
+    <string name="home_action_receipt_subtitle">Log where you\u2019ve been</string>
     <string name="open_full_map">Open nearby places map</string>
     <string name="filter_all_spots">All</string>
     <string name="filter_restaurants">Restaurants</string>

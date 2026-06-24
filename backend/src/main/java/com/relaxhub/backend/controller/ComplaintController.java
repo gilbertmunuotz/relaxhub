@@ -3,7 +3,7 @@ package com.relaxhub.backend.controller;
 import com.relaxhub.backend.dto.ApiResponse;
 import com.relaxhub.backend.dto.ComplaintResponse;
 import com.relaxhub.backend.dto.CreateComplaintRequest;
-import com.relaxhub.backend.security.JwtAuthenticationToken;
+import com.relaxhub.backend.security.AuthenticatedUser;
 import com.relaxhub.backend.service.ComplaintService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -29,19 +29,19 @@ public class ComplaintController {
 
     @PostMapping
     public ResponseEntity<ApiResponse<ComplaintResponse>> create(
-            @AuthenticationPrincipal JwtAuthenticationToken auth,
+            @AuthenticationPrincipal AuthenticatedUser user,
             @Valid @RequestBody CreateComplaintRequest request
     ) {
-        ComplaintResponse response = complaintService.create(auth.getUserId(), request);
+        ComplaintResponse response = complaintService.create(user.userId(), request);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ApiResponse.success("Complaint submitted", response));
     }
 
     @GetMapping
     public ResponseEntity<ApiResponse<List<ComplaintResponse>>> list(
-            @AuthenticationPrincipal JwtAuthenticationToken auth
+            @AuthenticationPrincipal AuthenticatedUser user
     ) {
-        List<ComplaintResponse> items = complaintService.listForUser(auth.getUserId());
+        List<ComplaintResponse> items = complaintService.listForUser(user.userId());
         return ResponseEntity.ok(ApiResponse.success("Complaints loaded", items));
     }
 }
