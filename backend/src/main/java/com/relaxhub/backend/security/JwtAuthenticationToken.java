@@ -5,13 +5,11 @@ import org.springframework.security.core.authority.AuthorityUtils;
 
 public class JwtAuthenticationToken extends AbstractAuthenticationToken {
 
-    private final Long userId;
-    private final String email;
+    private final AuthenticatedUser principal;
 
     public JwtAuthenticationToken(Long userId, String email) {
         super(AuthorityUtils.NO_AUTHORITIES);
-        this.userId = userId;
-        this.email = email;
+        this.principal = new AuthenticatedUser(userId, email);
         setAuthenticated(true);
     }
 
@@ -22,14 +20,19 @@ public class JwtAuthenticationToken extends AbstractAuthenticationToken {
 
     @Override
     public Object getPrincipal() {
-        return email;
+        return principal;
+    }
+
+    @Override
+    public String getName() {
+        return principal.email();
     }
 
     public Long getUserId() {
-        return userId;
+        return principal.userId();
     }
 
     public String getEmail() {
-        return email;
+        return principal.email();
     }
 }

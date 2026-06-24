@@ -6,7 +6,7 @@ import com.relaxhub.backend.dto.LoginRequest;
 import com.relaxhub.backend.dto.RegisterRequest;
 import com.relaxhub.backend.dto.ResetPasswordRequest;
 import com.relaxhub.backend.dto.UserResponse;
-import com.relaxhub.backend.security.JwtAuthenticationToken;
+import com.relaxhub.backend.security.AuthenticatedUser;
 import com.relaxhub.backend.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -48,8 +48,8 @@ public class AuthController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<ApiResponse<UserResponse>> me(@AuthenticationPrincipal JwtAuthenticationToken auth) {
-        UserResponse user = authService.getCurrentUser(auth.getEmail());
-        return ResponseEntity.ok(ApiResponse.success("Profile loaded", user));
+    public ResponseEntity<ApiResponse<UserResponse>> me(@AuthenticationPrincipal AuthenticatedUser user) {
+        UserResponse profile = authService.getCurrentUser(user.email());
+        return ResponseEntity.ok(ApiResponse.success("Profile loaded", profile));
     }
 }

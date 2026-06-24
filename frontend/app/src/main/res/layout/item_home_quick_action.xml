@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="@color/surface"
+    app:cardCornerRadius="@dimen/radius_lg"
+    app:cardElevation="@dimen/elevation_card"
+    app:rippleColor="@color/primary_light"
+    app:strokeColor="@color/divider"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_medium">
+
+        <FrameLayout
+            android:layout_width="@dimen/icon_action_size"
+            android:layout_height="@dimen/icon_action_size"
+            android:background="@drawable/bg_quick_action_icon">
+
+            <ImageView
+                android:id="@+id/actionIcon"
+                android:layout_width="@dimen/icon_size_md"
+                android:layout_height="@dimen/icon_size_md"
+                android:layout_gravity="center"
+                android:importantForAccessibility="no"
+                tools:src="@drawable/ic_action_map" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/actionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.Relaxhub.Label"
+            tools:text="Nearby places" />
+
+        <TextView
+            android:id="@+id/actionSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:gravity="center"
+            android:maxLines="2"
+            android:minLines="2"
+            android:textAppearance="@style/TextAppearance.Relaxhub.Caption"
+            tools:text="Restaurants &amp; relaxation" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
