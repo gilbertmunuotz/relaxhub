@@ -16,4 +16,8 @@
     <dimen name="icon_size_md">22dp</dimen>
     <dimen name="icon_action_size">44dp</dimen>
     <dimen name="quick_action_card_height">132dp</dimen>
+    <dimen name="settings_row_height">60dp</dimen>
+    <dimen name="settings_avatar_size">48dp</dimen>
+    <dimen name="settings_divider_inset">72dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
 </resources>

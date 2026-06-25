@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="help_questions">
+        <item>How do I find nearby places?</item>
+        <item>How do I save a visit?</item>
+        <item>How do I report a problem?</item>
+        <item>How do I share feedback?</item>
+        <item>How do I log out?</item>
+    </string-array>
+
+    <string-array name="help_answers">
+        <item>Open the Maps tab or tap Nearby places from Home. Allow location access to see spots closest to you.</item>
+        <item>Go to Settings → Visit receipts, fill in the place and date, then tap Save visit.</item>
+        <item>Open Settings → Submit a complaint, describe the issue, and send it to our team.</item>
+        <item>Open Settings → User feedback, choose a star rating, and leave a short message.</item>
+        <item>Open Settings, scroll to the bottom, and tap Log out.</item>
+    </string-array>
+
+    <string-array name="privacy_section_titles">
+        <item>Introduction</item>
+        <item>Information we collect</item>
+        <item>How we use your data</item>
+        <item>Location information</item>
+        <item>Storage and security</item>
+        <item>Sharing with third parties</item>
+        <item>Data retention</item>
+        <item>Your choices</item>
+        <item>Contact</item>
+    </string-array>
+
+    <string-array name="privacy_section_bodies">
+        <item>Relaxhub helps you discover restaurants and relaxation spots in Dar es Salaam. This policy explains what information we collect, why we collect it, and the choices you have.</item>
+        <item>We collect account details you provide at registration (name, email, optional phone), feedback and complaints you submit, visit receipts you save, and technical data needed to operate the app (such as authentication tokens).</item>
+        <item>Your information is used to create and secure your account, save your visits and submissions, show nearby places on the map, and improve the Relaxhub experience. We do not use your data for unrelated advertising.</item>
+        <item>When you use Maps, the app may request device location to centre the map and load nearby spots from our server. Location is used for that feature only and is not sold to third parties.</item>
+        <item>Data is stored in our PostgreSQL database on the backend and transmitted over HTTPS. Passwords are hashed before storage. We apply standard access controls to protect user records.</item>
+        <item>We do not sell your personal information. We only share data when required to operate the service (for example, cloud hosting) or when required by law.</item>
+        <item>We keep your account information while your account is active. Feedback, complaints, and receipts remain linked to your account until you ask us to delete it.</item>
+        <item>You can log out at any time from Settings. To request account or data removal, call our support line and we will assist you.</item>
+        <item>Questions about this policy? Call us at +255745123607 from the Contact screen in Settings.</item>
+    </string-array>
+</resources>

@@ -36,15 +36,22 @@
             android:paddingBottom="@dimen/padding_xl">
 
             <TextView
-                android:id="@+id/formSubtitle"
+                android:id="@+id/contentSubtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.Relaxhub.BodySecondary" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_xl"
+                android:text="@string/privacy_last_updated"
+                android:textAppearance="@style/TextAppearance.Relaxhub.Caption" />
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_large"
+                android:layout_marginTop="@dimen/spacing_sm"
                 app:cardBackgroundColor="@color/surface"
                 app:cardCornerRadius="@dimen/radius_lg"
                 app:cardElevation="0dp"
@@ -52,55 +59,12 @@
                 app:strokeWidth="1dp">
 
                 <LinearLayout
+                    android:id="@+id/privacySectionsContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/padding_medium">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/subjectInputLayout"
-                        style="@style/Widget.Relaxhub.TextInput"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/hint_subject">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/subjectInput"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textCapSentences" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/descriptionInputLayout"
-                        style="@style/Widget.Relaxhub.TextInput"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/padding_medium"
-                        android:hint="@string/hint_description">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/descriptionInput"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="top"
-                            android:inputType="textCapSentences|textMultiLine"
-                            android:minLines="5" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                </LinearLayout>
+                    android:orientation="vertical" />
 
             </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/submitButton"
-                style="@style/Widget.Relaxhub.FormButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_large"
-                android:text="@string/action_submit" />
 
         </LinearLayout>
 
