@@ -2,17 +2,21 @@ package com.relaxhub.frontend.ui.receipt;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.relaxhub.frontend.R;
 import com.relaxhub.frontend.data.model.ApiResponse;
 import com.relaxhub.frontend.data.model.CreateReceiptRequest;
 import com.relaxhub.frontend.data.model.ReceiptResponse;
 import com.relaxhub.frontend.ui.FormActivity;
-import com.relaxhub.frontend.util.NotificationHelper;
 import com.relaxhub.frontend.util.DateTimeUtils;
+import com.relaxhub.frontend.util.NotificationHelper;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -32,11 +36,18 @@ public class ReceiptActivity extends FormActivity {
     private LocalDate visitDate;
     private LocalTime visitTime;
     private TextView visitDateTimeText;
-    private TextView receiptHistoryText;
+    private LinearLayout receiptHistoryContainer;
+    private TextView receiptHistoryEmpty;
+    private TextInputLayout placeNameInputLayout;
 
     @Override
     protected int getTitleRes() {
         return R.string.title_receipt;
+    }
+
+    @Override
+    protected int getSubtitleRes() {
+        return R.string.receipt_form_subtitle;
     }
 
     @Override
@@ -46,8 +57,11 @@ public class ReceiptActivity extends FormActivity {
 
     @Override
     protected void bindViews() {
+        bindSubtitle();
         visitDateTimeText = findViewById(R.id.visitDateTimeText);
-        receiptHistoryText = findViewById(R.id.receiptHistoryText);
+        receiptHistoryContainer = findViewById(R.id.receiptHistoryContainer);
+        receiptHistoryEmpty = findViewById(R.id.receiptHistoryEmpty);
+        placeNameInputLayout = findViewById(R.id.placeNameInputLayout);
         TextInputEditText placeNameInput = findViewById(R.id.placeNameInput);
         TextInputEditText amountInput = findViewById(R.id.amountInput);
         TextInputEditText notesInput = findViewById(R.id.notesInput);
@@ -95,8 +109,10 @@ public class ReceiptActivity extends FormActivity {
             String placeName = placeNameInput.getText() != null
                     ? placeNameInput.getText().toString().trim() : "";
             if (placeName.isEmpty()) {
+                placeNameInputLayout.setError(getString(R.string.error_required_fields));
                 return;
             }
+            placeNameInputLayout.setError(null);
 
             Double amount = null;
             String amountText = amountInput.getText() != null ? amountInput.getText().toString().trim() : "";
@@ -122,6 +138,9 @@ public class ReceiptActivity extends FormActivity {
                 ) {
                     if (response.isSuccessful() && response.body() != null && response.body().isSuccess()) {
                         NotificationHelper.showReceiptSaved(ReceiptActivity.this, placeName);
+                        placeNameInput.setText("");
+                        amountInput.setText("");
+                        notesInput.setText("");
                         loadReceipts();
                         return;
                     }
@@ -140,8 +159,7 @@ public class ReceiptActivity extends FormActivity {
 
     private void updateDateTimeText() {
         visitDateTimeText.setText(getString(
-                R.string.receipt_item_format,
-                "Visit",
+                R.string.receipt_selected_datetime,
                 DateTimeUtils.formatDate(visitDate),
                 DateTimeUtils.formatTime(visitTime)
         ));
@@ -161,32 +179,46 @@ public class ReceiptActivity extends FormActivity {
                 if (!response.isSuccessful() || response.body() == null || !response.body().isSuccess()) {
                     return;
                 }
-
-                List<ReceiptResponse> receipts = response.body().getData();
-                if (receipts == null || receipts.isEmpty()) {
-                    receiptHistoryText.setText(R.string.receipt_history_empty);
-                    return;
-                }
-
-                StringBuilder builder = new StringBuilder();
-                for (ReceiptResponse receipt : receipts) {
-                    if (builder.length() > 0) {
-                        builder.append("\n\n");
-                    }
-                    builder.append(getString(
-                            R.string.receipt_item_format,
-                            receipt.getPlaceName(),
-                            receipt.getVisitDate(),
-                            receipt.getVisitTime()
-                    ));
-                }
-                receiptHistoryText.setText(builder.toString());
+                renderReceiptHistory(response.body().getData());
             }
 
             @Override
             public void onFailure(Call<ApiResponse<List<ReceiptResponse>>> call, Throwable t) {
-                // Keep existing history text
+                // Keep existing history
             }
         });
+    }
+
+    private void renderReceiptHistory(List<ReceiptResponse> receipts) {
+        receiptHistoryContainer.removeAllViews();
+
+        if (receipts == null || receipts.isEmpty()) {
+            receiptHistoryEmpty.setVisibility(View.VISIBLE);
+            receiptHistoryContainer.setVisibility(View.GONE);
+            return;
+        }
+
+        receiptHistoryEmpty.setVisibility(View.GONE);
+        receiptHistoryContainer.setVisibility(View.VISIBLE);
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        for (ReceiptResponse receipt : receipts) {
+            View item = inflater.inflate(R.layout.item_recent_visit, receiptHistoryContainer, false);
+            TextView placeName = item.findViewById(R.id.visitPlaceName);
+            TextView dateTime = item.findViewById(R.id.visitDateTime);
+            placeName.setText(receipt.getPlaceName());
+            dateTime.setText(formatVisitDateTime(receipt));
+            receiptHistoryContainer.addView(item);
+        }
+    }
+
+    private String formatVisitDateTime(ReceiptResponse receipt) {
+        try {
+            LocalDate date = LocalDate.parse(receipt.getVisitDate());
+            LocalTime time = LocalTime.parse(receipt.getVisitTime());
+            return DateTimeUtils.formatDate(date) + " · " + DateTimeUtils.formatTime(time);
+        } catch (Exception exception) {
+            return receipt.getVisitDate() + " · " + receipt.getVisitTime();
+        }
     }
 }

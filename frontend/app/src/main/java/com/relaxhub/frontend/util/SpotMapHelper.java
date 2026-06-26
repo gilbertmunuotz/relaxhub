@@ -40,11 +40,13 @@ public class SpotMapHelper {
     private final RelaxhubApi api;
     private final FusedLocationProviderClient locationClient;
     private final Map<String, SpotResponse> spotByMarkerId = new HashMap<>();
+    private final Map<String, Marker> markerById = new HashMap<>();
 
     private GoogleMap googleMap;
     private String typeFilter;
     private double searchLat = DEFAULT_LAT;
     private double searchLng = DEFAULT_LNG;
+    private String pendingHighlightName;
 
     public SpotMapHelper(Context context, RelaxhubApi api) {
         this.context = context;
@@ -92,6 +94,30 @@ public class SpotMapHelper {
         });
     }
 
+    public void focusOnSpot(double latitude, double longitude, String name) {
+        if (googleMap == null) {
+            return;
+        }
+        searchLat = latitude;
+        searchLng = longitude;
+        pendingHighlightName = name;
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 15f));
+        loadSpots();
+    }
+
+    private void highlightSpotByName(String name) {
+        for (Map.Entry<String, SpotResponse> entry : spotByMarkerId.entrySet()) {
+            SpotResponse spot = entry.getValue();
+            if (spot.getName() != null && spot.getName().equals(name)) {
+                Marker marker = markerById.get(entry.getKey());
+                if (marker != null) {
+                    marker.showInfoWindow();
+                }
+                return;
+            }
+        }
+    }
+
     public void loadSpots() {
         if (googleMap == null) {
             return;
@@ -120,9 +146,11 @@ public class SpotMapHelper {
     private void renderSpots(List<SpotResponse> spots) {
         googleMap.clear();
         spotByMarkerId.clear();
+        markerById.clear();
 
         if (spots == null || spots.isEmpty()) {
             Toast.makeText(context, R.string.spots_empty, Toast.LENGTH_SHORT).show();
+            pendingHighlightName = null;
             return;
         }
 
@@ -138,7 +166,13 @@ public class SpotMapHelper {
                     .icon(BitmapDescriptorFactory.defaultMarker(hue)));
             if (marker != null) {
                 spotByMarkerId.put(marker.getId(), spot);
+                markerById.put(marker.getId(), marker);
             }
+        }
+
+        if (pendingHighlightName != null) {
+            highlightSpotByName(pendingHighlightName);
+            pendingHighlightName = null;
         }
     }
 

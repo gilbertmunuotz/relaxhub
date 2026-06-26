@@ -1,6 +1,7 @@
 package com.relaxhub.frontend.ui.dashboard;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,11 +22,13 @@ import androidx.fragment.app.Fragment;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.relaxhub.frontend.R;
 import com.relaxhub.frontend.data.remote.ApiClient;
 import com.relaxhub.frontend.data.remote.RelaxhubApi;
+import com.relaxhub.frontend.ui.spots.SpotsListActivity;
 import com.relaxhub.frontend.util.SpotMapHelper;
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback {
@@ -85,6 +88,10 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         });
         allChip.setChecked(true);
 
+        MaterialButton listViewButton = view.findViewById(R.id.openSpotsListButton);
+        listViewButton.setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), SpotsListActivity.class)));
+
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapContainer);
         if (mapFragment == null) {
             mapFragment = SupportMapFragment.newInstance();
@@ -104,9 +111,29 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         } else {
             locationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION);
         }
+        applyPendingSpotFocus();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        applyPendingSpotFocus();
+    }
+
+    private void applyPendingSpotFocus() {
+        if (spotMapHelper == null || !(requireActivity() instanceof DashboardActivity)) {
+            return;
+        }
+        ((DashboardActivity) requireActivity()).consumePendingSpotFocus(spotMapHelper);
     }
 
     private void onLocationReady() {
+        if (requireActivity() instanceof DashboardActivity
+                && ((DashboardActivity) requireActivity()).hasPendingSpotFocus()) {
+            applyPendingSpotFocus();
+            spotMapHelper.enableMyLocation();
+            return;
+        }
         spotMapHelper.enableMyLocation();
         spotMapHelper.refreshWithUserLocation();
     }

@@ -21,6 +21,7 @@ val mapsApiKey = frontendEnv["GOOGLE_MAPS_API_KEY"] ?: ""
 
 android {
     namespace = "com.relaxhub.frontend"
+    // compileSdk stays high for current AndroidX deps; targetSdk lowered for Android 13 testing.
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -30,7 +31,7 @@ android {
     defaultConfig {
         applicationId = "com.relaxhub.frontend"
         minSdk = 26
-        targetSdk = 36
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 

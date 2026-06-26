@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@color/white" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/padding_screen"
+            android:paddingTop="@dimen/padding_medium"
+            android:paddingEnd="@dimen/padding_screen"
+            android:paddingBottom="@dimen/padding_xl">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/surface"
+                app:cardCornerRadius="@dimen/radius_lg"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/divider"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_large">
+
+                    <TextView
+                        android:id="@+id/spotTypeBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_email_chip"
+                        android:paddingStart="@dimen/padding_medium"
+                        android:paddingTop="@dimen/spacing_xs"
+                        android:paddingEnd="@dimen/padding_medium"
+                        android:paddingBottom="@dimen/spacing_xs"
+                        android:textAppearance="@style/TextAppearance.Relaxhub.Caption"
+                        android:textColor="@color/primary"
+                        tools:text="Restaurant" />
+
+                    <TextView
+                        android:id="@+id/spotDetailName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_medium"
+                        android:textAppearance="@style/TextAppearance.Relaxhub.Title"
+                        tools:text="Kivukoni Fish Market" />
+
+                    <TextView
+                        android:id="@+id/spotDetailAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_sm"
+                        android:textAppearance="@style/TextAppearance.Relaxhub.BodySecondary"
+                        tools:text="Kivukoni, Dar es Salaam" />
+
+                    <TextView
+                        android:id="@+id/spotDetailDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_medium"
+                        android:textAppearance="@style/TextAppearance.Relaxhub.Body"
+                        tools:text="Fresh seafood and local dishes near the harbour." />
+
+                    <TextView
+                        android:id="@+id/spotDetailPhoneLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_large"
+                        android:text="@string/spot_phone_label"
+                        android:textAppearance="@style/TextAppearance.Relaxhub.Caption" />
+
+                    <TextView
+                        android:id="@+id/spotDetailPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:textAppearance="@style/TextAppearance.Relaxhub.Label"
+                        android:textColor="@color/primary"
+                        tools:text="+255712345001" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/showOnMapButton"
+                style="@style/Widget.Relaxhub.FormButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_large"
+                android:text="@string/spot_show_on_map" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/callSpotButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:text="@string/spot_call_place"
+                app:strokeColor="@color/primary" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -89,7 +89,7 @@
                     android:layout_weight="1" />
 
                 <include
-                    android:id="@+id/openReceiptAction"
+                    android:id="@+id/openBrowseAction"
                     layout="@layout/item_home_quick_action"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -97,6 +97,13 @@
                     android:layout_weight="1" />
 
             </LinearLayout>
+
+            <include
+                android:id="@+id/openReceiptAction"
+                layout="@layout/item_home_quick_action"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_medium" />
 
             <TextView
                 android:layout_width="match_parent"

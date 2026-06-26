@@ -1,31 +1,54 @@
 package com.relaxhub.frontend.ui.help;
 
-import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.appbar.MaterialToolbar;
 import com.relaxhub.frontend.R;
+import com.relaxhub.frontend.ui.ContentToolbarActivity;
 
-public class HelpActivity extends AppCompatActivity {
+public class HelpActivity extends ContentToolbarActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_static_content);
+    protected int getLayoutRes() {
+        return R.layout.activity_help;
+    }
 
-        MaterialToolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(R.string.title_help);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    @Override
+    protected int getTitleRes() {
+        return R.string.title_help;
+    }
+
+    @Override
+    protected void bindContent() {
+        bindSubtitle(R.string.help_subtitle);
+
+        String[] questions = getResources().getStringArray(R.array.help_questions);
+        String[] answers = getResources().getStringArray(R.array.help_answers);
+        LinearLayout faqContainer = findViewById(R.id.faqContainer);
+        LayoutInflater inflater = LayoutInflater.from(this);
+
+        for (int i = 0; i < questions.length; i++) {
+            if (i > 0) {
+                View divider = new View(this);
+                divider.setLayoutParams(new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        getResources().getDimensionPixelSize(R.dimen.divider_height)
+                ));
+                divider.setBackgroundColor(getColor(R.color.divider));
+                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) divider.getLayoutParams();
+                params.setMarginStart(getResources().getDimensionPixelSize(R.dimen.settings_divider_inset));
+                divider.setLayoutParams(params);
+                faqContainer.addView(divider);
+            }
+
+            View item = inflater.inflate(R.layout.item_faq, faqContainer, false);
+            TextView question = item.findViewById(R.id.faqQuestion);
+            TextView answer = item.findViewById(R.id.faqAnswer);
+            question.setText(questions[i]);
+            answer.setText(i < answers.length ? answers[i] : "");
+            faqContainer.addView(item);
         }
-        toolbar.setNavigationOnClickListener(v -> finish());
-
-        TextView contentText = findViewById(R.id.contentText);
-        contentText.setText(R.string.help_content);
     }
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_medium">
+
+    <TextView
+        android:id="@+id/privacySectionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Relaxhub.Label"
+        tools:text="Information we collect" />
+
+    <TextView
+        android:id="@+id/privacySectionBody"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:lineSpacingExtra="3dp"
+        android:textAppearance="@style/TextAppearance.Relaxhub.BodySecondary"
+        tools:text="Section body text." />
+
+</LinearLayout>

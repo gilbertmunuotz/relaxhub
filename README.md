@@ -84,24 +84,25 @@ Ensure `JWT_SECRET` is set in `backend/.env` (at least 32 characters).
 ### Step 3 features
 
 - **Reset password:** Login → Forgot password? → enter email + new password
-- **Logout:** Dashboard → Settings tab → Log out
+- **Logout:** Dashboard → Account tab → Log out
 - **Google Maps:** Dashboard → Maps tab — set `GOOGLE_MAPS_API_KEY` in `frontend/.env` (see below)
 
 ### Step 4 features
 
-- **Feedback:** Settings → User feedback (rating + message)
-- **Complaints:** Settings → Submit a complaint
-- **Receipts:** Settings → Visit receipts (date/time pickers + history)
-- **Help / Privacy:** Static content screens
-- **Contact:** Call, SMS, and email intents
+- **Feedback:** Account → User feedback (rating + message)
+- **Complaints:** Account → Submit a complaint
+- **Receipts:** Account → Visit receipts (date/time pickers + history)
+- **Help / Privacy:** Settings tab → static content screens
+- **Contact:** Settings → Call support
 
 ### Step 5 features
 
 - **Nearby spots API:** `GET /api/spots`, `GET /api/spots/nearby?lat=&lng=&radiusKm=&type=`, `GET /api/spots/{id}` (JWT required)
 - **Seed data:** 10 sample restaurants and relaxation spots around Dar es Salaam (loaded on first backend start)
-- **Maps:** Dashboard → Maps tab shows markers from the API; filter by All / Restaurants / Relaxation
-- **MainActivity:** Full-screen nearby places map (Home → Open nearby places map, or Maps tab → Open full map)
-- **Home screen:** Welcome message, quick actions, and recent visits from the receipts API
+- **Maps:** Dashboard → Maps tab shows markers from the API; filter by All / Restaurants / Relaxation; **List view** opens browseable spot list
+- **Browse places:** Home → Browse places, or Maps → List view → tap a place for details (name, address, description, phone)
+- **MainActivity:** Full-screen nearby places map (Home → Nearby places)
+- **Home screen:** Welcome message, quick actions (map, browse, receipts), and recent visits from the receipts API
 - **Notifications:** Welcome notification on first dashboard visit; visit-saved notification after saving a receipt (Android 13+ asks for permission)
 
 Test spots API (replace `TOKEN` with a login JWT):
@@ -122,7 +123,7 @@ cp .env.example .env
 Gradle reads `frontend/.env` at build time and injects the key into the app — it is **not** stored in committed `strings.xml`.
 
 **Important:** A Maps key inside an APK can still be extracted. Always restrict it in [Google Cloud Console](https://console.cloud.google.com/) to your app package (`com.relaxhub.frontend`) and debug/release SHA-1 fingerprint.
-- **JWT protected API:** Account tab calls `GET /api/auth/me` with Bearer token
+- **JWT protected API:** Account tab shows profile from `GET /api/auth/me` with Bearer token
 
 ### Optional: Docker PostgreSQL
 
