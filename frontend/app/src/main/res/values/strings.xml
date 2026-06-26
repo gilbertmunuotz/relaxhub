@@ -18,6 +18,8 @@
     <string name="title_contact">Contact</string>
     <string name="title_privacy">Privacy Policy</string>
     <string name="title_receipt">Receipt</string>
+    <string name="title_spots">Browse places</string>
+    <string name="title_spot_detail">Place details</string>
 
     <string name="placeholder_login">Login — coming soon</string>
     <string name="placeholder_sign_up">Sign Up — coming soon</string>
@@ -75,7 +77,8 @@
     <string name="location_permission_required">Location permission is required to show your position on the map.</string>
 
     <string name="settings_menu_title">More options</string>
-    <string name="settings_subtitle">Manage your visits, get help, and control your account.</string>
+    <string name="settings_subtitle">Help, contact, and legal information for Relaxhub.</string>
+    <string name="account_subtitle">Your profile and personal activity in Relaxhub.</string>
     <string name="settings_section_activity">Your activity</string>
     <string name="settings_section_support">Help &amp; support</string>
     <string name="settings_section_legal">Legal</string>
@@ -83,7 +86,7 @@
     <string name="settings_row_complaints_subtitle">Report an issue</string>
     <string name="settings_row_receipt_subtitle">Save and review visits</string>
     <string name="settings_row_help_subtitle">Answers to common questions</string>
-    <string name="settings_row_contact_subtitle">Call, SMS, or email us</string>
+    <string name="settings_row_contact_subtitle">Call our support line</string>
     <string name="settings_row_privacy_subtitle">How we handle your data</string>
 
     <string name="feedback_form_subtitle">Tell us how Relaxhub is working for you. Your rating helps us improve.</string>
@@ -133,12 +136,21 @@
     <string name="home_action_map_subtitle">Restaurants &amp; relaxation</string>
     <string name="home_action_receipt_title">Visit receipts</string>
     <string name="home_action_receipt_subtitle">Log where you\u2019ve been</string>
+    <string name="home_action_browse_title">Browse places</string>
+    <string name="home_action_browse_subtitle">Restaurants &amp; relaxation list</string>
     <string name="open_full_map">Open nearby places map</string>
     <string name="filter_all_spots">All</string>
     <string name="filter_restaurants">Restaurants</string>
     <string name="filter_relaxation">Relaxation</string>
     <string name="spots_load_failed">Could not load nearby spots</string>
     <string name="spots_empty">No spots found nearby</string>
+    <string name="spots_list_subtitle">All restaurants and relaxation spots around Dar es Salaam.</string>
+    <string name="spots_list_empty">No places match this filter.</string>
+    <string name="spots_list_button">List view</string>
+    <string name="spot_phone_label">Phone</string>
+    <string name="spot_show_on_map">Show on map</string>
+    <string name="spot_call_place">Call this place</string>
+    <string name="spot_load_failed">Could not load place details</string>
     <string name="notification_channel_name">Relaxhub updates</string>
     <string name="notification_channel_description">Welcome messages and visit reminders</string>
     <string name="notification_welcome_title">Welcome to Relaxhub</string>

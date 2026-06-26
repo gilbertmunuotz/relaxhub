@@ -10,10 +10,10 @@
 
     <string-array name="help_answers">
         <item>Open the Maps tab or tap Nearby places from Home. Allow location access to see spots closest to you.</item>
-        <item>Go to Settings → Visit receipts, fill in the place and date, then tap Save visit.</item>
-        <item>Open Settings → Submit a complaint, describe the issue, and send it to our team.</item>
-        <item>Open Settings → User feedback, choose a star rating, and leave a short message.</item>
-        <item>Open Settings, scroll to the bottom, and tap Log out.</item>
+        <item>Go to Account → Visit receipts, fill in the place and date, then tap Save visit.</item>
+        <item>Open Account → Submit a complaint, describe the issue, and send it to our team.</item>
+        <item>Open Account → User feedback, choose a star rating, and leave a short message.</item>
+        <item>Open the Account tab and tap Log out at the bottom.</item>
     </string-array>
 
     <string-array name="privacy_section_titles">

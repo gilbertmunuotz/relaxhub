@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:minHeight="@dimen/settings_row_height"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/padding_medium"
+    android:paddingTop="@dimen/spacing_sm"
+    android:paddingEnd="@dimen/padding_medium"
+    android:paddingBottom="@dimen/spacing_sm">
+
+    <FrameLayout
+        android:layout_width="@dimen/icon_action_size"
+        android:layout_height="@dimen/icon_action_size"
+        android:background="@drawable/bg_quick_action_icon">
+
+        <ImageView
+            android:id="@+id/spotTypeIcon"
+            android:layout_width="@dimen/icon_size_md"
+            android:layout_height="@dimen/icon_size_md"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            tools:src="@drawable/ic_action_map" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_medium"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/spotName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Relaxhub.Label"
+            tools:text="Kivukoni Fish Market" />
+
+        <TextView
+            android:id="@+id/spotMeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textAppearance="@style/TextAppearance.Relaxhub.Caption"
+            tools:text="Restaurant · Kivukoni, Dar es Salaam" />
+
+        <TextView
+            android:id="@+id/spotDescriptionPreview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.Relaxhub.BodySecondary"
+            tools:text="Fresh seafood and local dishes near the harbour." />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="@dimen/icon_size_md"
+        android:layout_height="@dimen/icon_size_md"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_chevron_right" />
+
+</LinearLayout>

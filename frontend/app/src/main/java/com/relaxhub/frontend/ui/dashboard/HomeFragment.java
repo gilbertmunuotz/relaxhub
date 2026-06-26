@@ -24,6 +24,7 @@ import com.relaxhub.frontend.data.remote.ApiClient;
 import com.relaxhub.frontend.data.remote.RelaxhubApi;
 import com.relaxhub.frontend.ui.maps.MainActivity;
 import com.relaxhub.frontend.ui.receipt.ReceiptActivity;
+import com.relaxhub.frontend.ui.spots.SpotsListActivity;
 import com.relaxhub.frontend.util.DateTimeUtils;
 import com.relaxhub.frontend.util.NetworkUtils;
 
@@ -89,6 +90,13 @@ public class HomeFragment extends Fragment {
                 R.string.home_action_map_title,
                 R.string.home_action_map_subtitle,
                 () -> startActivity(new Intent(requireContext(), MainActivity.class))
+        );
+        setupQuickAction(
+                view.findViewById(R.id.openBrowseAction),
+                R.drawable.ic_action_browse,
+                R.string.home_action_browse_title,
+                R.string.home_action_browse_subtitle,
+                () -> startActivity(new Intent(requireContext(), SpotsListActivity.class))
         );
         setupQuickAction(
                 view.findViewById(R.id.openReceiptAction),

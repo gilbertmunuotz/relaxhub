@@ -9,43 +9,53 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/spotFilterGroup"
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/spotFilterGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginStart="@dimen/padding_screen"
+            android:layout_marginEnd="@dimen/padding_screen"
+            android:background="@drawable/bg_map_filter_bar"
+            android:paddingStart="@dimen/spacing_sm"
+            android:paddingTop="@dimen/spacing_sm"
+            android:paddingEnd="@dimen/spacing_sm"
+            android:paddingBottom="@dimen/spacing_sm"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/filterAllChip"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/filter_all_spots" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/filterRestaurantChip"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_restaurants" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/filterRelaxationChip"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_relaxation" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/openSpotsListButton"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|center_horizontal"
-        android:layout_marginStart="@dimen/padding_screen"
-        android:layout_marginEnd="@dimen/padding_screen"
-        android:background="@drawable/bg_map_filter_bar"
-        android:paddingStart="@dimen/spacing_sm"
-        android:paddingTop="@dimen/spacing_sm"
-        android:paddingEnd="@dimen/spacing_sm"
-        android:paddingBottom="@dimen/spacing_sm"
-        app:selectionRequired="true"
-        app:singleSelection="true">
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/filterAllChip"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/filter_all_spots" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/filterRestaurantChip"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/filter_restaurants" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/filterRelaxationChip"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/filter_relaxation" />
-
-    </com.google.android.material.chip.ChipGroup>
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/padding_screen"
+        android:text="@string/spots_list_button"
+        app:strokeColor="@color/primary" />
 
 </FrameLayout>
