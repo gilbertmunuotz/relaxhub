@@ -46,6 +46,7 @@
     <string name="hint_full_name">Full name</string>
     <string name="hint_phone">Phone (optional)</string>
     <string name="action_login">Login</string>
+    <string name="action_back">Back</string>
     <string name="action_register">Create account</string>
     <string name="action_go_to_sign_up">Don\u2019t have an account? Sign up</string>
     <string name="status_checking_connection">Checking network and server\u2026</string>

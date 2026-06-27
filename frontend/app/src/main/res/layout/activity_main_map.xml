@@ -1,62 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/mapFragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:titleTextColor="@android:color/white"
-        app:navigationIconTint="@android:color/white" />
+        android:layout_height="match_parent" />
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+    <ImageButton
+        android:id="@+id/mapBackButton"
+        android:layout_width="@dimen/icon_action_size"
+        android:layout_height="@dimen/icon_action_size"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="@dimen/padding_screen"
+        android:background="@drawable/bg_map_filter_bar"
+        android:contentDescription="@string/action_back"
+        android:importantForAccessibility="yes"
+        android:padding="@dimen/spacing_sm"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_arrow_back"
+        app:tint="@color/primary" />
 
-        <fragment
-            android:id="@+id/mapFragment"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/spotFilterGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginStart="@dimen/padding_screen"
+        android:layout_marginEnd="@dimen/padding_screen"
+        android:background="@drawable/bg_map_filter_bar"
+        android:paddingStart="@dimen/spacing_sm"
+        android:paddingTop="@dimen/spacing_sm"
+        android:paddingEnd="@dimen/spacing_sm"
+        android:paddingBottom="@dimen/spacing_sm"
+        app:selectionRequired="true"
+        app:singleSelection="true">
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/spotFilterGroup"
+        <com.google.android.material.chip.Chip
+            android:id="@+id/filterAllChip"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="top|center_horizontal"
-            android:layout_margin="@dimen/padding_medium"
-            app:selectionRequired="true"
-            app:singleSelection="true">
+            android:checked="true"
+            android:text="@string/filter_all_spots" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/filterAllChip"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/filter_all_spots" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/filterRestaurantChip"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filter_restaurants" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/filterRestaurantChip"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/filter_restaurants" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/filterRelaxationChip"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filter_relaxation" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/filterRelaxationChip"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/filter_relaxation" />
+    </com.google.android.material.chip.ChipGroup>
 
-        </com.google.android.material.chip.ChipGroup>
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-</LinearLayout>
+</FrameLayout>
